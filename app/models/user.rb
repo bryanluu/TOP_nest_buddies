@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :connections, dependent: :destroy
-  has_many :buddies, through: :connections
+  has_many :buddies, -> { joins(:connections).where(connections: { accepted: true }) }, through: :connections
 end

@@ -1,6 +1,16 @@
 <% if user_signed_in? %>
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Users</h1>
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.email %></li>
+  <% end %>
+</ul>
+<h1>Buddies in Your Nest</h1>
+<ul>
+  <% current_user.buddies.each do |buddy| %>
+    <li><%= buddy.email %></li>
+  <% end %>
+</ul>
 <% else %>
 <h1>Nest Buddies</h1>
 <p>Join & find a nest!</p>

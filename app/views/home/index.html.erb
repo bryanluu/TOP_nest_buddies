@@ -2,7 +2,7 @@
 <h1>Users</h1>
 <ul>
   <% @users.each do |user| %>
-    <li><%= user.email %></li>
+    <li><%= user.email %>: <%= link_to("Invite to Nest", "/connections/#{user.id}", method: :post) %></li>
   <% end %>
 </ul>
 <h1>Buddies in Your Nest</h1>

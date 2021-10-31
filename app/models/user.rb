@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :connections
   has_many :buddies, -> { joins(:connections).where(connections: { accepted: true }) }, through: :connections
+  has_many :posts, foreign_key: :author_id, inverse_of: :author, dependent: :destroy
 end

@@ -5,6 +5,10 @@ class ConnectionController < ApplicationController
     redirect_to root_path
   end
 
+  def accept
+
+  end
+
   #######
   private
   #######

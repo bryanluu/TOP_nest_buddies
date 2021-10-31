@@ -7,11 +7,6 @@
 </ul>
 <h1>Buddies in Your Nest</h1>
 <ul>
-  <% Connection.requests_for(current_user.id).each do |request| %>
-    <li><%= request.user.email %> <%= link_to("Accept", "/connection/#{request.user.id}", method: :put) %> <%= link_to("Decline", "/connection/#{request.user.id}", method: :delete) %></li>
-  <% end %>
-</ul>
-<ul>
   <% current_user.buddies.each do |buddy| %>
     <li><%= buddy.email %></li>
   <% end %>

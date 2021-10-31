@@ -13,6 +13,13 @@ class ConnectionController < ApplicationController
     redirect_to root_path
   end
 
+  def decline
+    @invite = Connection.find_by(user_id: connection_params[:buddy_id], buddy_id: current_user.id)
+    @invite.destroy
+
+    redirect_to root_path
+  end
+
   #######
   private
   #######

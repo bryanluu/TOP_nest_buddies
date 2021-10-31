@@ -6,7 +6,11 @@ class ConnectionController < ApplicationController
   end
 
   def accept
+    @invite = Connection.find_by(user_id: connection_params[:buddy_id], buddy_id: current_user.id)
+    @invite.update(accepted: true)
+    @invite.create_inverse
 
+    redirect_to root_path
   end
 
   #######

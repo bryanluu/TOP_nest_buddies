@@ -19,7 +19,7 @@
       <h3>Buddy requests (<%= requests.count %>)</h3>
       <ul>
         <% requests.each do |request| %>
-          <li><%= request.user.email %> <%= link_to("Accept", "/connection/#{request.user.id}", method: :put) %> <%= link_to("Decline", "/connection/#{request.user.id}", method: :delete) %></li>
+          <li><%= request.user.email %> <%= link_to("Accept", accept_request_path(request.user.id), method: :put) %> <%= link_to("Decline", decline_request_path(request.user.id), method: :delete) %></li>
         <% end %>
       </ul>
     <% else %>

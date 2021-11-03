@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy like ]
 
   # GET /posts or /posts.json
   def index
@@ -54,6 +54,16 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def like
+    like = @post.likes.build(user: current_user)
+
+    if like.save
+      redirect_to @post, notice: "Post was liked."
+    else
+      render :show, status: :unprocessable_entity
     end
   end
 

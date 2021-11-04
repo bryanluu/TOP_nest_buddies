@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy like ]
+  before_action :set_post, only: %i[ show edit update destroy like unlike ]
   before_action :authorize_user, only: %i[ edit update destroy ]
 
   # GET /posts or /posts.json
@@ -66,6 +66,12 @@ class PostsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def unlike
+    like = @post.likes.where(user: current_user).first
+    like.destroy
+    redirect_to @post, notice: "Post was unliked."
   end
 
   private

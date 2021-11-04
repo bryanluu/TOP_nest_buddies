@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 <%= render 'post', post: @post %>
 <% if @post.author == current_user %><%= link_to 'Edit', edit_post_path(@post) %> |<% end %>
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Back', posts_path %> |
 <% unless Like.exists?(user: current_user, post: @post) %>
 <%= link_to 'Like', like_post_path(@post), method: :post %>
+<% else %>
+<%= link_to 'Unlike', unlike_post_path(@post), method: :delete %>
 <% end %>

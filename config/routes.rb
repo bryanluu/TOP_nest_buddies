@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :posts
-  post 'posts/:id/likes', to: 'posts#like', as: :like_post
+  post 'posts/:id/like', to: 'posts#like', as: :like_post
+  delete 'posts/:id/like', to: 'posts#unlike', as: :unlike_post
 
   devise_for :users
   get 'home/index'

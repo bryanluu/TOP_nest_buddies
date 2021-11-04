@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
-<% likes = @post.likes.count %>
-<p>"<%= @post.text %>", author: <%= @post.author.email %><%= likes > 0 ? ", #{likes} liked" : "" %></p>
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= render 'post', post: @post %>
+<% if @post.author == current_user %><%= link_to 'Edit', edit_post_path(@post) %> |<% end %>
 <%= link_to 'Back', posts_path %>
-<br><br>
 <% unless Like.exists?(user: current_user, post: @post) %>
 <%= link_to 'Like', like_post_path(@post), method: :post %>
 <% end %>

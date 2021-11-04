@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[ show edit update destroy like ]
+  before_action :authorize_user, only: %i[ edit update destroy ]
 
   # GET /posts or /posts.json
   def index
@@ -68,6 +69,13 @@ class PostsController < ApplicationController
   end
 
   private
+    def authorize_user
+      unless @post.author == current_user
+        flash[:error] = "You are not authorized"
+        redirect_to posts_url # halts request cycle
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])

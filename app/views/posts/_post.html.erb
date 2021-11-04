@@ -1,2 +1,2 @@
 <% likes = post.likes.count %>
-<p>"<%= post.text %>", author: <%= post.author.email %><%= likes > 0 ? ", #{likes} liked" : "" %></p>
+<p>"<%= post.content %>", author: <%= post.author.email %><%= likes > 0 ? ", #{likes} liked" : "" %></p>

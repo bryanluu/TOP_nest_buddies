@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    resources :comments, only: %i[new create edit update destroy]
+  end
   post 'posts/:id/like', to: 'posts#like', as: :like_post
   delete 'posts/:id/like', to: 'posts#unlike', as: :unlike_post
 

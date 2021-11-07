@@ -12,6 +12,7 @@
 <% end %>
 <ul>
 <% @post.comments.each do |comment| %>
-  <li><%= comment.content %> (<%= comment.author.email %>)</li>
+  <li><%= comment.content %> (<%= comment.author.email %>) <%= link_to 'Edit', "#{post_path(@post)}/comments/#{comment.id}/edit" %></li>
 <% end %>
 </ul>
+<%= link_to 'New Comment', new_post_comment_path(@post) %>

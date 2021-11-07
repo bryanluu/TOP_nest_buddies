@@ -13,10 +13,13 @@
   <body>
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>.
+      <%= link_to 'Home', home_index_path %> |
+      <%= link_to 'Timeline', posts_path %> |
       <%= link_to 'Edit profile', edit_user_registration_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       <% requests = Connection.requests_for(current_user.id) %>
-      <h3>Buddy requests (<%= requests.count %>)</h3>
+      <br>
+      <strong>Buddy requests (<%= requests.count %>)</strong>
       <ul>
         <% requests.each do |request| %>
           <li><%= request.user.email %> <%= link_to("Accept", accept_request_path(request.user.id), method: :put) %> <%= link_to("Decline", decline_request_path(request.user.id), method: :delete) %></li>

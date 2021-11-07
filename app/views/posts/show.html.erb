@@ -12,7 +12,7 @@
 <% end %>
 <ul>
 <% @post.comments.each do |comment| %>
-  <li><%= comment.content %> (<%= comment.author.email %>) <%= link_to 'Edit', "#{post_path(@post)}/comments/#{comment.id}/edit" %></li>
+  <li><%= comment.content %> (<%= comment.author.email %>) <% if comment.author == current_user %>| <%= link_to 'Edit', "#{post_path(@post)}/comments/#{comment.id}/edit" %> | <%= link_to 'Delete', "#{post_path(@post)}/comments/#{comment.id}", method: :delete %><% end %></li>
 <% end %>
 </ul>
 <%= link_to 'New Comment', new_post_comment_path(@post) %>

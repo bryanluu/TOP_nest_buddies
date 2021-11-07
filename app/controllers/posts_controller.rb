@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.by_buddies_of(current_user).or(Post.where(author: current_user)).distinct.order(created_at: :desc).limit(5)
   end
 
   # GET /posts/1 or /posts/1.json

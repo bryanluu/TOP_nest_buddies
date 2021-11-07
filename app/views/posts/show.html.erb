@@ -3,7 +3,15 @@
 <% if @post.author == current_user %><%= link_to 'Edit', edit_post_path(@post) %> |<% end %>
 <%= link_to 'Back', posts_path %> |
 <% unless Like.exists?(user: current_user, post: @post) %>
-<%= link_to 'Like', like_post_path(@post), method: :post %>
+  <%= link_to 'Like', like_post_path(@post), method: :post %>
 <% else %>
-<%= link_to 'Unlike', unlike_post_path(@post), method: :delete %>
+  <%= link_to 'Unlike', unlike_post_path(@post), method: :delete %>
 <% end %>
+<% if @post.comments.count > 0 %>
+  <h5>Comments</h5>
+<% end %>
+<ul>
+<% @post.comments.each do |comment| %>
+  <li><%= comment.content %> (<%= comment.author.email %>)</li>
+<% end %>
+</ul>
